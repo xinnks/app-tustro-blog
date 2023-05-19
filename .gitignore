@@ -22,3 +22,5 @@ pnpm-debug.log*
 
 # npm lock files
 package-lock.json
+# Local Netlify folder
+.netlify
