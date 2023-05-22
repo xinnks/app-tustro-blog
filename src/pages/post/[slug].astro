@@ -1,5 +1,5 @@
 ---
-import { Markdown } from "@astropub/md"
+import { marked } from "marked"
 import BlogPost from '../../layouts/BlogPost.astro';
 import type { Blog } from '../../lib/types';
 
@@ -15,8 +15,9 @@ if(!slug){
 
 const response = await fetch(Astro.site + `post/${slug}.json`);
 post = await response.json() as unknown as Blog;
+const content = marked.parse(post?.content)
 ---
 
 <BlogPost {...post}>
-  <Markdown of={post?.content || ""} />
+  <article set:html={content}></article>
 </BlogPost>
